@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 
 void main() {
   runApp(const MyApp());
@@ -25,8 +26,36 @@ class MyApp extends StatelessWidget {
 class AppPage extends StatelessWidget {
   const AppPage({Key? key}) : super(key: key);
 
+  static List<String> Skill = [
+    "Sql",
+    "Python",
+    "Flutter & Dart",
+    "C++",
+    "C#",
+    "HTML and CSS",
+    "JavaScript"
+  ];
+
+  static List<Map<String, String>> Goals = [
+    {
+      'title': 'images/mobile.jpeg',
+      'sub': 'Learning how to be a mobile developer with Flutter and Dart.'
+    },
+    {
+      'title': 'images/maastricht.jpg',
+      'sub': 'Accepted to Maastricht University through IISMA 2023.'
+    },
+    {'title': 'images/aslab.jpg', 'sub': 'Becoming a Laboratorium Assistant.'},
+  ];
+
+  static List<IconData> apaiya = [
+    FontAwesomeIcons.github,
+    FontAwesomeIcons.facebook,
+    FontAwesomeIcons.instagram,
+    FontAwesomeIcons.linkedin
+  ];
+
   Widget rill() {
-    List<String> skill = ["Sql", "Python", "Flutter & Dart"];
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -122,14 +151,12 @@ class AppPage extends StatelessWidget {
                 style: TextStyle(fontSize: 12),
               )),
           Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              rill2(FontAwesomeIcons.github),
-              rill2(FontAwesomeIcons.facebook),
-              rill2(FontAwesomeIcons.instagram),
-              rill2(FontAwesomeIcons.linkedin),
-            ],
-          ),
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: apaiya.map(
+                (icon) {
+                  return rill2(icon);
+                },
+              ).toList()),
           Container(
             margin: EdgeInsets.symmetric(vertical: 10),
             child: Text(
@@ -138,52 +165,34 @@ class AppPage extends StatelessWidget {
             ),
           ),
           Container(
-            width: double.infinity,
-            padding: EdgeInsets.all(10),
-            margin: EdgeInsets.symmetric(horizontal: 70, vertical: 4),
-            decoration: BoxDecoration(
-                color: Colors.grey[400],
-                border: Border.all(color: Colors.grey[400] as Color, width: 2),
-                borderRadius: BorderRadius.circular(20)),
-            child: Text(
-              'Sql',
-              textAlign: TextAlign.center,
-              style: TextStyle(fontWeight: FontWeight.w700, fontSize: 12),
-            ),
-          ),
-          Container(
-            width: double.infinity,
-            padding: EdgeInsets.all(10),
-            margin: EdgeInsets.symmetric(horizontal: 70, vertical: 4),
-            decoration: BoxDecoration(
-                color: Colors.white,
-                border: Border.all(color: Colors.grey[400] as Color, width: 2),
-                borderRadius: BorderRadius.circular(20)),
-            child: Text(
-              'Python',
-              textAlign: TextAlign.center,
-              style: TextStyle(fontWeight: FontWeight.w700, fontSize: 12),
-            ),
-          ),
-          Container(
-            width: double.infinity,
-            padding: EdgeInsets.all(10),
-            margin: EdgeInsets.symmetric(horizontal: 70, vertical: 4),
-            decoration: BoxDecoration(
-                color: Colors.white,
-                border: Border.all(color: Colors.grey[400] as Color, width: 2),
-                borderRadius: BorderRadius.circular(20)),
-            child: Text(
-              'Flutter and Dart',
-              textAlign: TextAlign.center,
-              style: TextStyle(fontWeight: FontWeight.w700, fontSize: 12),
+            height: 150,
+            child: ListView.builder(
+              padding: EdgeInsets.zero,
+              itemBuilder: ((context, index) {
+                return Container(
+                  width: double.infinity,
+                  padding: EdgeInsets.all(10),
+                  margin: EdgeInsets.symmetric(horizontal: 40, vertical: 4),
+                  decoration: BoxDecoration(
+                      color: Colors.white,
+                      border: Border.all(
+                          color: Colors.grey[400] as Color, width: 2),
+                      borderRadius: BorderRadius.circular(20)),
+                  child: Text(
+                    Skill[index],
+                    textAlign: TextAlign.center,
+                    style: TextStyle(fontWeight: FontWeight.w700, fontSize: 12),
+                  ),
+                );
+              }),
+              itemCount: Skill.length,
             ),
           ),
           Container(
             width: double.infinity,
             margin: EdgeInsets.symmetric(horizontal: 70, vertical: 4),
             child: Text(
-              'See more',
+              'Scroll to see more',
               textAlign: TextAlign.center,
               style: TextStyle(
                   fontWeight: FontWeight.w700,
@@ -201,96 +210,48 @@ class AppPage extends StatelessWidget {
               style: TextStyle(fontSize: 12),
             ),
           ),
-          Card(
-            margin: EdgeInsets.symmetric(horizontal: 40, vertical: 10),
-            elevation: 6,
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-            child: Column(
-              children: [
-                ClipRRect(
-                  borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(20),
-                      topRight: Radius.circular(20)),
-                  child: Image.asset(
-                    'images/maastricht.jpg',
-                    height: 150,
-                    width: double.infinity,
-                    fit: BoxFit.cover,
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.all(10),
-                  child: Text(
-                    'Accepted to Maastricht University through IISMA 2023.',
-                    style: TextStyle(fontSize: 16),
-                    textAlign: TextAlign.center,
-                  ),
-                ),
-              ],
-            ),
+          SizedBox(
+            height: 0,
           ),
-          Card(
-            margin: EdgeInsets.symmetric(horizontal: 40, vertical: 10),
-            elevation: 6,
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-            child: Column(
-              children: [
-                ClipRRect(
-                  borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(20),
-                      topRight: Radius.circular(20)),
-                  child: Image.asset(
-                    'images/aslab.jpg',
-                    height: 150,
-                    width: double.infinity,
-                    fit: BoxFit.cover,
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.all(10),
-                  child: Text(
-                    'Becoming a Laboratorium Assistant.',
-                    style: TextStyle(fontSize: 16),
-                    textAlign: TextAlign.center,
-                  ),
-                ),
-              ],
+          CarouselSlider(
+            options: CarouselOptions(
+              height: 250,
             ),
-          ),
-          Card(
-            margin: EdgeInsets.symmetric(horizontal: 40, vertical: 10),
-            elevation: 6,
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-            child: Column(
-              children: [
-                ClipRRect(
-                  borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(20),
-                      topRight: Radius.circular(20)),
-                  child: Image.asset(
-                    'images/mobile.jpeg',
-                    height: 150,
-                    width: double.infinity,
-                    fit: BoxFit.cover,
-                  ),
+            items: Goals.map((rill) {
+              return Card(
+                margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                elevation: 6,
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20)),
+                child: Column(
+                  children: [
+                    ClipRRect(
+                      borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(20),
+                          topRight: Radius.circular(20)),
+                      child: Image.asset(
+                        rill["title"] as String,
+                        height: 150,
+                        width: double.infinity,
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                    Container(
+                      padding: EdgeInsets.all(10),
+                      child: Text(
+                        rill["sub"] as String,
+                        style: TextStyle(fontSize: 16),
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                  ],
                 ),
-                Padding(
-                  padding: EdgeInsets.all(10),
-                  child: Text(
-                    'Learning how to be a mobile developer with Flutter and Dart.',
-                    style: TextStyle(fontSize: 16),
-                    textAlign: TextAlign.center,
-                  ),
-                ),
-              ],
-            ),
+              );
+            }).toList(),
           ),
           SizedBox(
             height: 20,
-          ),
+          )
         ],
       ),
     ));
